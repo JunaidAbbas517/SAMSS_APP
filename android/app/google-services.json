@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "177695819235",
+    "project_id": "samss-5d773",
+    "storage_bucket": "samss-5d773.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177695819235:android:970150f6b70a035a740cd6",
+        "android_client_info": {
+          "package_name": "com.example.samss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177695819235-p5n15k20bn6cenvdinf64h913bqhid2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL0hh7Rx2rn1AVj5fZiDF8GQx0Mc6xBpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177695819235-p5n15k20bn6cenvdinf64h913bqhid2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
