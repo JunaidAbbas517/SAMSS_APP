@@ -36,24 +36,25 @@ class _SupplierHomeState extends State<SupplierHome> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Column(
-          children: [
-            Text(
-              "${loginUser.firstName}  ${loginUser.lastName}",
-              style: const TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              "${loginUser.email}",
-              style: const TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-          ],
-        ),
+        child: Text("New Orders"),
+        // child: Column(
+        //   children: [
+        //     Text(
+        //       "${loginUser.firstName}  ${loginUser.lastName}",
+        //       style: const TextStyle(
+        //           color: Colors.blueGrey,
+        //           fontSize: 20,
+        //           fontWeight: FontWeight.w400),
+        //     ),
+        //     Text(
+        //       "${loginUser.email}",
+        //       style: const TextStyle(
+        //           color: Colors.blueGrey,
+        //           fontSize: 20,
+        //           fontWeight: FontWeight.w400),
+        //     ),
+        //   ],
+        // ),
       ),
     );
   }

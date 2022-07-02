@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samss/consumer/services/auth.dart';
 import 'package:samss/supplier/supplier_model/supplier_user.dart';
+import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_main.dart';
 import 'package:samss/supplier/supplier_screen/supplier_login_screen/supplier_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SupplierSetting extends StatefulWidget {
-  SupplierSetting({Key? key}) : super(key: key);
+class SupplierProfile extends StatefulWidget {
+  SupplierProfile({Key? key}) : super(key: key);
 
   @override
-  State<SupplierSetting> createState() => _SupplierSettinfState();
+  State<SupplierProfile> createState() => _SupplierSettinfState();
 }
 
-class _SupplierSettinfState extends State<SupplierSetting> {
+class _SupplierSettinfState extends State<SupplierProfile> {
   final AuthServices _auth = AuthServices();
   User? user = FirebaseAuth.instance.currentUser;
   final TextEditingController firstNameController = new TextEditingController();
@@ -89,7 +90,7 @@ class _SupplierSettinfState extends State<SupplierSetting> {
                             .doc(FirebaseAuth.instance.currentUser!.uid);
                         docUser.update({'firstName': firstNameController.text});
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => SupplierSetting()));
+                            builder: (context) => SupplierProfile()));
                       } else {
                         Fluttertoast.showToast(
                             msg: "Please enter atleast 3 character.");
@@ -178,7 +179,7 @@ class _SupplierSettinfState extends State<SupplierSetting> {
                             .doc(FirebaseAuth.instance.currentUser!.uid);
                         docUser.update({'secondName': lastNameController.text});
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => SupplierSetting()));
+                            builder: (context) => SupplierProfile()));
                       } else {
                         Fluttertoast.showToast(
                             msg: "Please enter atleast 3 character.");
@@ -266,7 +267,7 @@ class _SupplierSettinfState extends State<SupplierSetting> {
                             .doc(FirebaseAuth.instance.currentUser!.uid);
                         docUser.update({'contact': contactController.text});
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => SupplierSetting()));
+                            builder: (context) => SupplierProfile()));
                       } else {
                         Fluttertoast.showToast(msg: "Please enter 11 digits.");
                       }
@@ -354,7 +355,7 @@ class _SupplierSettinfState extends State<SupplierSetting> {
                         docUser
                             .update({'stataionAdress': addressController.text});
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => SupplierSetting()));
+                            builder: (context) => SupplierProfile()));
                       } else {
                         Fluttertoast.showToast(msg: "Please enter 11 digits.");
                       }
@@ -504,95 +505,123 @@ class _SupplierSettinfState extends State<SupplierSetting> {
     );
 
 //display
-    return Center(
-      child: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: const Text(
-                  "Profile",
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blueAccent,
-                  ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            FlatButton.icon(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => SupplierMain()));
+              },
+              icon: Icon(
+                Icons.check,
+                color: Colors.white,
+              ),
+              label: Text(
+                "Save",
+                style: TextStyle(
+                  color: Colors.white,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 60),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "First Name",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
+            )
+          ],
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.blueAccent,
+          title: Text("Setting"),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: const Text(
+                      "Profile",
+                      style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
                   ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              firstName,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Last Name",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
+                  Container(
+                    margin: EdgeInsets.only(left: 60),
+                    padding: EdgeInsets.only(top: 10),
+                    height: 40,
+                    child: Text(
+                      "First Name",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
                   ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              lasttName,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Contact",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
+                  firstName,
+                  Container(
+                    margin: EdgeInsets.only(left: 60, top: 10),
+                    padding: EdgeInsets.only(top: 10),
+                    height: 40,
+                    child: Text(
+                      "Last Name",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
                   ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              contact,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Station Address",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
+                  lasttName,
+                  Container(
+                    margin: EdgeInsets.only(left: 60, top: 10),
+                    padding: EdgeInsets.only(top: 10),
+                    height: 40,
+                    child: Text(
+                      "Contact",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
                   ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              addressField,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Password",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
+                  contact,
+                  Container(
+                    margin: EdgeInsets.only(left: 60, top: 10),
+                    padding: EdgeInsets.only(top: 10),
+                    height: 40,
+                    child: Text(
+                      "Station Address",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
                   ),
-                ),
-                width: MediaQuery.of(context).size.width,
+                  addressField,
+                  Container(
+                    margin: EdgeInsets.only(left: 60, top: 10),
+                    padding: EdgeInsets.only(top: 10),
+                    height: 40,
+                    child: Text(
+                      "Password",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  passwordField,
+                ],
               ),
-              passwordField,
-            ],
+            ),
           ),
         ),
       ),

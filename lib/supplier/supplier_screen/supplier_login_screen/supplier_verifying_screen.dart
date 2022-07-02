@@ -33,14 +33,16 @@ class _SupplierVerifyScreenState extends State<SupplierVerifyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Verification"),
-      ),
-      body: Center(
-        child: Text(
-          'An email has been sent to ${user!.email} please verify',
-          textAlign: TextAlign.center,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Verification"),
+        ),
+        body: Center(
+          child: Text(
+            'An email has been sent to ${user!.email} please verify',
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

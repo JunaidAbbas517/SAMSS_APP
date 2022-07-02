@@ -261,150 +261,152 @@ class _RegisterationState extends State<Registeration> {
       ),
     );
 
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.indigo,
-              Colors.blueAccent,
-            ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.indigo,
+                Colors.blueAccent,
+              ],
+            ),
           ),
-        ),
-        width: _screenWidth,
-        height: _screenHieght,
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Center(
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 40),
-                    padding: EdgeInsets.all(10),
-                    child: const Text(
-                      "New Account",
-                      style: TextStyle(
-                          fontSize: 50,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Text(
-                    "Consumer",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w300),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    width: double.infinity,
-                    height: _screenHieght - 245,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
+          width: _screenWidth,
+          height: _screenHieght,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Center(
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 40),
+                      padding: EdgeInsets.all(10),
+                      child: const Text(
+                        "New Account",
+                        style: TextStyle(
+                            fontSize: 50,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
-                      color: Colors.white,
                     ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 60,
-                          child: firstNameField,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 60,
-                          child: lastNameField,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 60,
-                          child: contactField,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 60,
-                          child: emailField,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 60,
-                          child: passwordField,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 60,
-                          child: conformPasswordField,
-                        ),
-                        Container(
-                          width: 250,
-                          height: 40,
-                          child: registerButton,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Expanded(
-                              child: Divider(
-                                indent: 20.0,
-                                endIndent: 10.0,
-                                thickness: 1,
-                              ),
-                            ),
-                            Text(
-                              "OR",
-                              style: TextStyle(color: Colors.blueGrey),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                indent: 10.0,
-                                endIndent: 20.0,
-                                thickness: 1,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Have an account? "),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Login()));
-                              },
-                              child: const Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 62, 73, 78),
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                    const Text(
+                      "Consumer",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      width: double.infinity,
+                      height: _screenHieght - 245,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 300,
+                            height: 60,
+                            child: firstNameField,
+                          ),
+                          Container(
+                            width: 300,
+                            height: 60,
+                            child: lastNameField,
+                          ),
+                          Container(
+                            width: 300,
+                            height: 60,
+                            child: contactField,
+                          ),
+                          Container(
+                            width: 300,
+                            height: 60,
+                            child: emailField,
+                          ),
+                          Container(
+                            width: 300,
+                            height: 60,
+                            child: passwordField,
+                          ),
+                          Container(
+                            width: 300,
+                            height: 60,
+                            child: conformPasswordField,
+                          ),
+                          Container(
+                            width: 250,
+                            height: 40,
+                            child: registerButton,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Expanded(
+                                child: Divider(
+                                  indent: 20.0,
+                                  endIndent: 10.0,
+                                  thickness: 1,
+                                ),
+                              ),
+                              Text(
+                                "OR",
+                                style: TextStyle(color: Colors.blueGrey),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  indent: 10.0,
+                                  endIndent: 20.0,
+                                  thickness: 1,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("Have an account? "),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Login()));
+                                },
+                                child: const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 62, 73, 78),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -2,25 +2,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:samss/consumer/model/report.dart';
-import 'package:samss/consumer/model/user.dart';
-import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
-import 'package:samss/consumer/screen/main_screen/support/display_report.dart';
+import 'package:samss/supplier/supplier_model/supplier_report.dart';
+import 'package:samss/supplier/supplier_model/supplier_user.dart';
+import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_main.dart';
+import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_setting/display_supplier_report.dart';
 import 'package:xid/xid.dart';
 
-class ConsumerReport extends StatefulWidget {
+class SupplierReportMain extends StatefulWidget {
   @override
-  State<ConsumerReport> createState() => _ConsumerReportState();
+  State<SupplierReportMain> createState() => _ConsumerReportState();
 }
 
-class _ConsumerReportState extends State<ConsumerReport> {
+class _ConsumerReportState extends State<SupplierReportMain> {
   final TextEditingController commentTitleController =
       new TextEditingController();
   final TextEditingController commentDesController =
       new TextEditingController();
   List<String> litems = [];
   User? user = FirebaseAuth.instance.currentUser;
-  UserModel loginUser = UserModel();
+  SupplierUserModel supplierModel = SupplierUserModel();
+
   var xid = Xid();
   // String uniqeId =
 
@@ -28,11 +29,11 @@ class _ConsumerReportState extends State<ConsumerReport> {
   void initState() {
     super.initState();
     FirebaseFirestore.instance
-        .collection('users')
+        .collection('supplier')
         .doc(user!.uid)
         .get()
         .then((value) {
-      this.loginUser = UserModel.fromMap(value.data());
+      this.supplierModel = SupplierUserModel.fromMap(value.data());
       setState(() {});
     });
   }
@@ -168,7 +169,7 @@ class _ConsumerReportState extends State<ConsumerReport> {
             FlatButton.icon(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                    MaterialPageRoute(builder: (context) => SupplierMain()));
               },
               icon: Icon(
                 Icons.check,
@@ -220,7 +221,7 @@ class _ConsumerReportState extends State<ConsumerReport> {
                         ),
                         height: 300,
                         width: MediaQuery.of(context).size.width - 60,
-                        child: ReportDispaly(),
+                        child: SupplierReportDisplay(),
                       )
                     ],
                   ),
@@ -234,11 +235,11 @@ class _ConsumerReportState extends State<ConsumerReport> {
   }
 
   Future reportDeatilToFirestore() async {
-    UserReport reportDetail = UserReport(
-      account: loginUser.account,
-      email: loginUser.email,
-      firstName: loginUser.firstName,
-      uid: loginUser.uid,
+    SupplierReport reportDetail = SupplierReport(
+      account: supplierModel.account,
+      email: supplierModel.email,
+      firstName: supplierModel.firstName,
+      uid: supplierModel.uid,
       messageTitle: commentTitleController.text,
       messageDescription: commentDesController.text,
       date: DateTime.now(),
@@ -246,9 +247,9 @@ class _ConsumerReportState extends State<ConsumerReport> {
 
     try {
       await FirebaseFirestore.instance
-          .collection('users')
+          .collection('supplier')
           .doc(user!.uid)
-          .collection("user_report")
+          .collection("supplier_report")
           .add(reportDetail.toMap());
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.toString());

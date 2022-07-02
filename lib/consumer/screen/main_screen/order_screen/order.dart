@@ -166,14 +166,14 @@ class _OrderScreenState extends State<OrderScreen> {
 
     if (order.status == "new") {
       _currentstep = 0;
-      //  TankerNotificationService().cancelAllNotifications();
+      TankerNotificationService().cancelAllNotifications();
     } else if (order.status == "pending") {
       _currentstep = 1;
-      // TankerNotificationService().showNotification();
+      TankerNotificationService().showNotification();
     } else if (order.status == "complete") {
       _currentstep = 2;
 
-      // TankerNotificationService().cancelAllNotifications();
+      TankerNotificationService().cancelAllNotifications();
     }
 
     return SafeArea(

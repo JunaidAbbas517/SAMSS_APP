@@ -432,105 +432,107 @@ class _SettingState extends State<Setting> {
     );
 
 //display
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          FlatButton.icon(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomeScreen()));
-            },
-            icon: Icon(
-              Icons.check,
-              color: Colors.white,
-            ),
-            label: Text(
-              "Save",
-              style: TextStyle(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            FlatButton.icon(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+              icon: Icon(
+                Icons.check,
                 color: Colors.white,
               ),
+              label: Text(
+                "Save",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.blueAccent,
+          title: Text("Setting"),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
+                  child: const Text(
+                    "Profile",
+                    style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 60),
+                  padding: EdgeInsets.only(top: 10),
+                  height: 40,
+                  child: Text(
+                    "First Name",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                ),
+                firstName,
+                Container(
+                  margin: EdgeInsets.only(left: 60, top: 10),
+                  padding: EdgeInsets.only(top: 10),
+                  height: 40,
+                  child: Text(
+                    "Last Name",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                ),
+                lasttName,
+                Container(
+                  margin: EdgeInsets.only(left: 60, top: 10),
+                  padding: EdgeInsets.only(top: 10),
+                  height: 40,
+                  child: Text(
+                    "Contact",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                ),
+                contact,
+                Container(
+                  margin: EdgeInsets.only(left: 60, top: 10),
+                  padding: EdgeInsets.only(top: 10),
+                  height: 40,
+                  child: Text(
+                    "Password",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                ),
+                passwordField,
+              ],
             ),
-          )
-        ],
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.blueAccent,
-        title: Text("Setting"),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
-                child: const Text(
-                  "Profile",
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 60),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "First Name",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              firstName,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Last Name",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              lasttName,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Contact",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              contact,
-              Container(
-                margin: EdgeInsets.only(left: 60, top: 10),
-                padding: EdgeInsets.only(top: 10),
-                height: 40,
-                child: Text(
-                  "Password",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width,
-              ),
-              passwordField,
-            ],
           ),
         ),
       ),

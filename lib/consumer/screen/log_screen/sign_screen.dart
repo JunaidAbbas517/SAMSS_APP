@@ -236,134 +236,136 @@ class _LoginState extends State<Login> {
       ),
     );
 
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.indigo,
-              Colors.blueAccent,
-            ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.indigo,
+                Colors.blueAccent,
+              ],
+            ),
           ),
-        ),
-        width: _screenWidth,
-        height: _screenHieght,
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 50),
-                    padding: EdgeInsets.all(10),
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                          fontSize: 50,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Text(
-                    "Consumer",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w300),
-                  ),
-                  AnimatedContainer(
-                    margin: const EdgeInsets.only(top: 40),
-                    duration: const Duration(milliseconds: 500),
-                    width: double.infinity,
-                    height: 480,
-                    transform: Matrix4.translationValues(0, 0, 0),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
+          width: _screenWidth,
+          height: _screenHieght,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 50),
+                      padding: EdgeInsets.all(10),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                            fontSize: 50,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
-                      color: Colors.white,
                     ),
-                    child: Column(
-                      children: [
-                        toggle,
-                        const SizedBox(
-                          height: 10,
+                    const Text(
+                      "Consumer",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w300),
+                    ),
+                    AnimatedContainer(
+                      margin: const EdgeInsets.only(top: 40),
+                      duration: const Duration(milliseconds: 500),
+                      width: double.infinity,
+                      height: 480,
+                      transform: Matrix4.translationValues(0, 0, 0),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30),
                         ),
-                        Container(
-                          width: 300,
-                          child: emailField,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: 300,
-                          child: passwordField,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: 300,
-                          child: resetPassword,
-                          alignment: FractionalOffset(0.1, 0),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: 150,
-                          height: 40,
-                          child: loginButton,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Expanded(
-                              child: Divider(
-                                indent: 20.0,
-                                endIndent: 10.0,
-                                thickness: 1,
-                              ),
-                            ),
-                            Text(
-                              "OR",
-                              style: TextStyle(color: Colors.blueGrey),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                indent: 10.0,
-                                endIndent: 20.0,
-                                thickness: 1,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "Don't have an account?",
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontSize: 16,
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          toggle,
+                          const SizedBox(
+                            height: 10,
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        Container(
-                          width: 250,
-                          height: 40,
-                          child: registeration,
-                        ),
-                      ],
+                          Container(
+                            width: 300,
+                            child: emailField,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: 300,
+                            child: passwordField,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: 300,
+                            child: resetPassword,
+                            alignment: FractionalOffset(0.1, 0),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: 150,
+                            height: 40,
+                            child: loginButton,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Expanded(
+                                child: Divider(
+                                  indent: 20.0,
+                                  endIndent: 10.0,
+                                  thickness: 1,
+                                ),
+                              ),
+                              Text(
+                                "OR",
+                                style: TextStyle(color: Colors.blueGrey),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  indent: 10.0,
+                                  endIndent: 20.0,
+                                  thickness: 1,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "Don't have an account?",
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            width: 250,
+                            height: 40,
+                            child: registeration,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
