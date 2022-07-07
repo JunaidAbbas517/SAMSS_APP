@@ -317,7 +317,7 @@ class _SupplierRegisterationState extends State<SupplierRegisteration> {
                 child: Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(top: 50),
+                      margin: const EdgeInsets.only(top: 30),
                       padding: EdgeInsets.all(10),
                       child: const Text(
                         "New Account",
@@ -338,7 +338,7 @@ class _SupplierRegisterationState extends State<SupplierRegisteration> {
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
                       width: double.infinity,
-                      height: _screenHieght - 275,
+                      height: _screenHieght - 185,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
@@ -349,9 +349,10 @@ class _SupplierRegisterationState extends State<SupplierRegisteration> {
                         color: Colors.white,
                       ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const SizedBox(
-                            height: 20,
+                            height: 0,
                           ),
                           Container(
                             width: 300,
@@ -481,6 +482,7 @@ class _SupplierRegisterationState extends State<SupplierRegisteration> {
     userModel.status = 1;
     userModel.account = "supplier";
     userModel.totalRating = 0;
+    userModel.accountStatus = "active";
 
     try {
       final CollectionReference userCollection =

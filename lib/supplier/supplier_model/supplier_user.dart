@@ -9,6 +9,7 @@ class SupplierUserModel {
   String? stataionAdress;
   String? account;
   int? totalRating;
+  String? accountStatus;
 
   SupplierUserModel(
       {this.uid,
@@ -20,7 +21,8 @@ class SupplierUserModel {
       this.contact,
       this.stataionAdress,
       this.account,
-      this.totalRating});
+      this.totalRating,
+      this.accountStatus});
 
 //data from server
   factory SupplierUserModel.fromMap(map) {
@@ -34,6 +36,7 @@ class SupplierUserModel {
         contact: map['contact'],
         stataionAdress: map['stataionAdress'],
         account: map['account'],
+        accountStatus: map['accountStatus'],
         totalRating: map['totalRating']);
   }
 
@@ -48,6 +51,7 @@ class SupplierUserModel {
       'status': status,
       'stataionAdress': stataionAdress,
       'account': account,
+      'accountStatus': accountStatus,
       'totalRating': totalRating,
     };
   }

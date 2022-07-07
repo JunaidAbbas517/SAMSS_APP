@@ -28,21 +28,6 @@ class _SupplierHomeState extends State<SupplierHome> {
   @override
   void initState() {
     super.initState();
-    newOrder();
-    setState(() {
-      timer = Timer.periodic(Duration(seconds: 1), (_) {
-        setState(() {
-          FirebaseFirestore.instance
-              .collection('order')
-              .doc(orderUid)
-              .get()
-              .then((value) {
-            this.orderUser = ConsumerOrderModel.fromMap(value.data());
-            setState(() {});
-          });
-        });
-      });
-    });
 
     FirebaseFirestore.instance
         .collection('supplier')
@@ -51,6 +36,18 @@ class _SupplierHomeState extends State<SupplierHome> {
         .then((value) {
       this.supplierModel = SupplierUserModel.fromMap(value.data());
       setState(() {});
+    });
+
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
+      newOrder();
+      FirebaseFirestore.instance
+          .collection('order')
+          .doc(orderUid)
+          .get()
+          .then((value) {
+        this.orderUser = ConsumerOrderModel.fromMap(value.data());
+        setState(() {});
+      });
     });
   }
 

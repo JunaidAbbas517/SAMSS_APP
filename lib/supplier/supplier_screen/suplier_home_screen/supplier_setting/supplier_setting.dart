@@ -40,12 +40,12 @@ class _SupplierSettingState extends State<SupplierSetting> {
             final docUser = FirebaseFirestore.instance
                 .collection('supplier')
                 .doc(FirebaseAuth.instance.currentUser!.uid);
-            docUser.update({'status': 1});
+            docUser.update({'accountStatus': "active"});
           } else {
             final docUser = FirebaseFirestore.instance
                 .collection('supplier')
                 .doc(FirebaseAuth.instance.currentUser!.uid);
-            docUser.update({'status': 0});
+            docUser.update({'accountStatus': "inactive"});
           }
         },
       ),
