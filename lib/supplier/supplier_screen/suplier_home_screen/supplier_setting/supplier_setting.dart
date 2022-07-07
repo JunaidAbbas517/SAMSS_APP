@@ -18,8 +18,7 @@ class _SupplierSettingState extends State<SupplierSetting> {
     final _screenWidth = MediaQuery.of(context).size.width;
     final _screenHeight = MediaQuery.of(context).size.height;
 
-    //Active or inactive
-    // Toggle button
+    //Active or inactive Toggle button
     final activeButton = Material(
       child: ToggleSwitch(
         minWidth: 100.0,

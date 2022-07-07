@@ -74,21 +74,6 @@ class _SubCategoryClassState extends State<SupplierReportDisplay> {
                       ),
                     ),
                   ),
-                  // GestureDetector(
-                  //   onTap: (() {
-                  //     // FirebaseFirestore.instance
-                  //     //     .collection('users')
-                  //     //     .doc(FirebaseAuth.instance.currentUser!.uid)
-                  //     //     .collection('user_orders')
-                  //     //     .doc(document.id)
-                  //     //     .delete();
-                  //     // setState(() {});
-                  //   }),
-                  //   child: Icon(
-                  //     Icons.delete_forever_outlined,
-                  //     color: Colors.blueAccent,
-                  //   ),
-                  // )
                 ],
               ),
             );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_main.dart';
 import 'package:samss/supplier/supplier_screen/supplier_login_screen/supplier_register.dart';
+import 'package:samss/supplier/supplier_screen/supplier_login_screen/supplier_reset.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -170,8 +171,8 @@ class _LoginState extends State<SupplierLogin> {
     final resetPassword = Material(
       child: GestureDetector(
         onTap: () {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => ResetScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SupplierResetPage()));
         },
         child: const Text(
           "Forget Password",
@@ -395,17 +396,6 @@ class _LoginState extends State<SupplierLogin> {
           Fluttertoast.showToast(msg: "You are not supplier");
         }
       }
-
-      // snapshot.docs.forEach((f) async {
-      //   if (f['email'] == email) {
-      //     Navigator.of(context).pushReplacement(
-      //         MaterialPageRoute(builder: (context) => SupplierHome()));
-      //     await prefs.setString('email', userCredential.user!.uid);
-      //     await prefs.setString('account', f['account']);
-      //   } else {
-      //     Fluttertoast.showToast(msg: "You are not supplier");
-      //   }
-      // });
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
         case "invalid-email":
