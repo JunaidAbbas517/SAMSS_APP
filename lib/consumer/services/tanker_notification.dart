@@ -33,6 +33,7 @@ class TankerNotificationService {
       'main_channel',
       'SAMSS',
       importance: Importance.high,
+      playSound: false,
     );
     var iOSDetail = new IOSNotificationDetails();
     var generalNotification =

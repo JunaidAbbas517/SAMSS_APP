@@ -17,12 +17,13 @@ class SupplierAcception extends StatefulWidget {
 class _SupplierAcceptionState extends State<SupplierAcception> {
   User? user = FirebaseAuth.instance.currentUser;
   String? currentOrderUid;
+  bool deatil = false;
   ConsumerOrderModel order = ConsumerOrderModel();
   late Timer timer;
   void initState() {
     // TODO: implement initState
     super.initState();
-    orderStatusDetail();
+
     setState(() {
       timer = Timer.periodic(Duration(seconds: 1), (_) {
         setState(() {
@@ -122,45 +123,76 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
               SizedBox(
                 height: 30,
               ),
-              Text(
-                "Order Detail",
-                style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Consumer: ${order.firstName} ${order.lastName}",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blueAccent,
+              GestureDetector(
+                onTap: (() async {
+                  orderStatusDetail();
+                  setState(() {
+                    deatil = true;
+                  });
+                }),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Order Detail",
+                      style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueAccent),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(
+                      Icons.expand_circle_down_sharp,
+                      color: Colors.blueAccent,
+                      size: 40,
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-              Text(
-                "Contact: ${order.contact}",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blueAccent,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Consumer Address: ${order.homeAddress}, ${order.cityAddress}",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blueAccent,
-                ),
-              ),
-              SizedBox(
-                height: 20,
+              Container(
+                child: deatil == true
+                    ? Column(
+                        children: [
+                          Text(
+                            "Consumer: ${order.firstName} ${order.lastName}",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Contact: ${order.contact}",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Consumer Address: ${order.homeAddress}, ${order.cityAddress}",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      )
+                    : SizedBox(
+                        height: 20,
+                      ),
               ),
               continueButton,
             ],

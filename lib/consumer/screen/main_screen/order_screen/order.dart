@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
+
 import 'package:samss/consumer/services/tanker_notification.dart';
 import 'package:samss/shared/consumer_order.dart';
+import 'package:samss/shared/supplier_order_Accept.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -19,8 +21,12 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int _currentstep = 0;
   String? currentOrderUid;
+  String supplierFName = '';
+  String supplierSName = '';
+  String contact = '';
 
   bool showButtomDrawer = false;
+  SupplierOrderAccept orderAccept = SupplierOrderAccept();
   ConsumerOrderModel order = ConsumerOrderModel();
   User? user = FirebaseAuth.instance.currentUser;
   late Timer timer;
@@ -134,24 +140,18 @@ class _OrderScreenState extends State<OrderScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "Saqlain Abbas",
+                            "Supplier:  ${supplierFName}  ${supplierSName}",
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "conatact",
+                            "Conatact:  ${contact}",
                             style: TextStyle(
                               color: Colors.white,
                             ),
                           ),
-                          Text(
-                            "Tanker Number",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          )
                         ],
                       ),
                     ),
@@ -179,14 +179,16 @@ class _OrderScreenState extends State<OrderScreen> {
     return SafeArea(
       child: Scaffold(
         body: GestureDetector(
-          onPanEnd: ((details) {
+          onPanEnd: ((details) async {
             if (details.velocity.pixelsPerSecond.dy > threshold) {
               setState(() {
                 showButtomDrawer = false;
+                supplierDetail();
               });
             } else if (details.velocity.pixelsPerSecond.dy < -threshold) {
               setState(() {
                 showButtomDrawer = true;
+                supplierDetail();
               });
             }
           }),
@@ -238,7 +240,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                   ),
                                 ),
                                 content: const Center(
-                                  heightFactor: 15,
+                                  heightFactor: 10,
                                   child: Text(
                                     'Searching for water tanker supplier.',
                                     style: TextStyle(
@@ -259,7 +261,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                   ),
                                 ),
                                 content: const Center(
-                                  heightFactor: 15,
+                                  heightFactor: 10,
                                   child: Text(
                                     'Water Tanker in on way to destination.',
                                     style: TextStyle(
@@ -280,7 +282,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                   ),
                                 ),
                                 content: const Center(
-                                  heightFactor: 15,
+                                  heightFactor: 10,
                                   child: Text(
                                     'Water Tanker reach to destination.  ',
                                     style: TextStyle(
@@ -337,6 +339,23 @@ class _OrderScreenState extends State<OrderScreen> {
       print(currentOrderUid);
     } on FirebaseAuthException catch (error) {
       print(error);
+    }
+  }
+
+  Future supplierDetail() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('order')
+          .doc(currentOrderUid)
+          .collection("supplier_detail")
+          .get();
+      for (final f in snapshot.docs) {
+        supplierFName = f['firstName'];
+        supplierSName = f['secondName'];
+        contact = f['contact'];
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }
