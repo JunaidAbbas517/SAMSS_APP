@@ -1,12 +1,8 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:samss/consumer/screen/main_screen/order_history/order_list.dart';
-import 'package:samss/shared/consumer_order.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PreviousOrderList extends StatefulWidget {
   PreviousOrderList({Key? key}) : super(key: key);
@@ -57,12 +53,22 @@ class _PreviousOrderListState extends State<PreviousOrderList> {
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data!.docs
-        .map((doc) => Card(
-              child: ListTile(
-                  title: Text(doc["firstName"]),
-                  subtitle: Text(doc["status"].toString())),
-            ))
+        .map(
+          (doc) => doc["consumerUid"] == FirebaseAuth.instance.currentUser!.uid
+              ? Card(
+                  child: ListTile(
+                    title: Text("Order Status: " + doc["status"]),
+                    subtitle: Text(
+                      "Quantity: " +
+                          doc["tankerQuantity"].toString() +
+                          ",        Price: " +
+                          doc["tankerPrice"].toString(),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              : Wrap(),
+        )
         .toList();
-    ;
   }
 }

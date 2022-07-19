@@ -69,13 +69,18 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                 .collection('supplier')
                 .doc(FirebaseAuth.instance.currentUser!.uid);
             docUser.update({'status': 1});
+            final supplierUid = FirebaseFirestore.instance
+                .collection('order')
+                .doc(order.orderUid);
+            orderStatusChange.update(
+                {'supplierUid': "${FirebaseAuth.instance.currentUser!.uid}"});
             final prefs = await SharedPreferences.getInstance();
             final success = await prefs.remove('orderuid');
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SupplierMain()));
           },
           child: const Text(
-            "Continue",
+            "Complete",
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,

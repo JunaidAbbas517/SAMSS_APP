@@ -455,6 +455,7 @@ class _HomeScreenState extends State<HomeScreen> {
     orderDetail.status = 'new';
     orderDetail.tankerQuantity = tankerQuantity;
     orderDetail.tankerPrice = price;
+    orderDetail.supplierUid = null;
     try {
       final prefs = await SharedPreferences.getInstance();
       if (tankerQuantity != 0 &&
@@ -465,7 +466,6 @@ class _HomeScreenState extends State<HomeScreen> {
             .doc("$xid")
             .set(orderDetail.toMap());
         await prefs.setString('orderUid', xid.toString());
-
         Navigator.pushAndRemoveUntil(
             (context),
             MaterialPageRoute(builder: (context) => OrderScreen()),

@@ -30,7 +30,7 @@ class TankerNotificationService {
 
   Future<void> showNotification() async {
     var androidDetail = new AndroidNotificationDetails(
-      'main_channel',
+      'main_channel 1',
       'SAMSS',
       importance: Importance.high,
       playSound: false,

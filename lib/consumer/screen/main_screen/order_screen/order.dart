@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
 
@@ -24,6 +25,10 @@ class _OrderScreenState extends State<OrderScreen> {
   String supplierFName = '';
   String supplierSName = '';
   String contact = '';
+  double supplierRating = 0;
+  String? suplierUid;
+
+  bool completeButtonDisable = true;
 
   bool showButtomDrawer = false;
   SupplierOrderAccept orderAccept = SupplierOrderAccept();
@@ -52,6 +57,7 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     var threshold = 100;
+
     // conform button
     final conformButton = Material(
       elevation: 10,
@@ -64,24 +70,25 @@ class _OrderScreenState extends State<OrderScreen> {
           vertical: 4,
         ),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: () async {
-          final prefs = await SharedPreferences.getInstance();
-          QuerySnapshot snapshot =
-              await FirebaseFirestore.instance.collection('order').get();
-          for (final f in snapshot.docs) {
-            if (f['consumerUid'] == user!.uid) {
-              if (f['status'] == 'complete') {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
-                final success1 = await prefs.remove('orderUid');
-              } else if (f['status'] != 'complete') {
-                Fluttertoast.showToast(msg: "Order is pending.");
+        onPressed: completeButtonDisable == false
+            ? () async {
+                final prefs = await SharedPreferences.getInstance();
+                QuerySnapshot snapshot =
+                    await FirebaseFirestore.instance.collection('order').get();
+                for (final f in snapshot.docs) {
+                  if (f['consumerUid'] == user!.uid) {
+                    if (f['status'] == 'complete') {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => HomeScreen()));
+                      final success1 = await prefs.remove('orderUid');
+                    } else {
+                      Fluttertoast.showToast(msg: "Order is pending.");
+                    }
+                    break;
+                  }
+                }
               }
-
-              break;
-            }
-          }
-        },
+            : null,
         child: const Text(
           "Complete",
           style: TextStyle(fontSize: 22, color: Colors.blueAccent),
@@ -172,7 +179,7 @@ class _OrderScreenState extends State<OrderScreen> {
       TankerNotificationService().showNotification();
     } else if (order.status == "complete") {
       _currentstep = 2;
-
+      completeButtonDisable = false;
       TankerNotificationService().cancelAllNotifications();
     }
 

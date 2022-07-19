@@ -54,6 +54,11 @@ class _SupplierSettinfState extends State<SupplierProfile> {
 
   @override
   Widget build(BuildContext context) {
+    if (loginUser.accountStatus == "active") {
+      int toggleIndex = 0;
+    } else if (loginUser.accountStatus == "inactive") {
+      int toggleIndex = 1;
+    }
     // first name field
     Future updateFirstName() async => showDialog(
         context: context,
