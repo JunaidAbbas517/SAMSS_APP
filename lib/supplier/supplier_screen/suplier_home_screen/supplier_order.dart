@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SupplierOrder extends StatefulWidget {
   SupplierOrder({Key? key}) : super(key: key);
@@ -15,7 +16,29 @@ class _SupplierOrderState extends State<SupplierOrder> {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('order').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return Text("There is no expense");
+          if (!snapshot.hasData)
+            return Center(
+              child: Text(
+                "There is no Order",
+                style: TextStyle(fontSize: 20),
+              ),
+            );
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("There is no Order"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SpinKitDualRing(
+                    color: Colors.blueAccent,
+                    size: 60.0,
+                  ),
+                ],
+              ),
+            );
           return ListView(
             children: getOrder(snapshot),
           );

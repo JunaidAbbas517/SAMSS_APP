@@ -129,6 +129,9 @@ class _SupplierSettinfState extends State<SupplierProfile> {
         children: [
           Text(
             "${loginUser.firstName}",
+            overflow: TextOverflow.fade,
+            maxLines: 1,
+            softWrap: true,
             style: TextStyle(
               fontSize: 18,
               color: Colors.blueAccent,
@@ -217,6 +220,9 @@ class _SupplierSettinfState extends State<SupplierProfile> {
         children: [
           Text(
             "${loginUser.lastName}",
+            overflow: TextOverflow.fade,
+            maxLines: 1,
+            softWrap: true,
             style: TextStyle(
               fontSize: 18,
               color: Colors.blueAccent,
@@ -304,6 +310,9 @@ class _SupplierSettinfState extends State<SupplierProfile> {
         children: [
           Text(
             "${loginUser.contact}",
+            overflow: TextOverflow.fade,
+            maxLines: 1,
+            softWrap: true,
             style: TextStyle(
               fontSize: 18,
               color: Colors.blueAccent,
@@ -392,6 +401,9 @@ class _SupplierSettinfState extends State<SupplierProfile> {
         children: [
           Text(
             "${loginUser.stataionAdress}",
+            overflow: TextOverflow.fade,
+            maxLines: 1,
+            softWrap: true,
             style: TextStyle(
               fontSize: 18,
               color: Colors.blueAccent,
@@ -491,6 +503,9 @@ class _SupplierSettinfState extends State<SupplierProfile> {
         children: [
           Text(
             "${loginUser.password}",
+            overflow: TextOverflow.fade,
+            maxLines: 1,
+            softWrap: true,
             style: TextStyle(
               fontSize: 18,
               color: Colors.blueAccent,

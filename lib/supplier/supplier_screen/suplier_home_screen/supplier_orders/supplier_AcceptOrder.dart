@@ -164,7 +164,9 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                     ? Column(
                         children: [
                           Text(
-                            "Consumer: ${order.firstName} ${order.lastName}",
+                            order.firstName != null && order.lastName != null
+                                ? "Consumer: ${order.firstName} ${order.lastName}"
+                                : "Consumer: Loading ...",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.blueAccent,
@@ -174,7 +176,9 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                             height: 20,
                           ),
                           Text(
-                            "Contact: ${order.contact}",
+                            order.contact != null
+                                ? "Contact: ${order.contact}"
+                                : "Consumer: Loading ...",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.blueAccent,
@@ -184,7 +188,10 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                             height: 20,
                           ),
                           Text(
-                            "Consumer Address: ${order.homeAddress}, ${order.cityAddress}",
+                            order.homeAddress != null &&
+                                    order.cityAddress != null
+                                ? "Consumer Address: ${order.homeAddress}, ${order.cityAddress}"
+                                : "Consumer: Loading ...",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.blueAccent,

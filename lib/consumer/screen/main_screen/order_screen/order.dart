@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
@@ -10,6 +11,7 @@ import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
 import 'package:samss/consumer/services/tanker_notification.dart';
 import 'package:samss/shared/consumer_order.dart';
 import 'package:samss/shared/supplier_order_Accept.dart';
+import 'package:samss/supplier/supplier_model/supplier_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -24,13 +26,16 @@ class _OrderScreenState extends State<OrderScreen> {
   String? currentOrderUid;
   String supplierFName = '';
   String supplierSName = '';
+
   String contact = '';
-  double supplierRating = 0;
-  String? suplierUid;
+
+  int supplierRating = 0;
 
   bool completeButtonDisable = true;
 
   bool showButtomDrawer = false;
+
+  SupplierUserModel supplierModel = SupplierUserModel();
   SupplierOrderAccept orderAccept = SupplierOrderAccept();
   ConsumerOrderModel order = ConsumerOrderModel();
   User? user = FirebaseAuth.instance.currentUser;
@@ -73,14 +78,105 @@ class _OrderScreenState extends State<OrderScreen> {
         onPressed: completeButtonDisable == false
             ? () async {
                 final prefs = await SharedPreferences.getInstance();
+
                 QuerySnapshot snapshot =
                     await FirebaseFirestore.instance.collection('order').get();
                 for (final f in snapshot.docs) {
                   if (f['consumerUid'] == user!.uid) {
                     if (f['status'] == 'complete') {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => HomeScreen()));
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Text(
+                                  "Feedback",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blueAccent),
+                                ),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Please rate supplier.",
+                                      style:
+                                          TextStyle(color: Colors.blueAccent),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    RatingBar.builder(
+                                        itemPadding:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        updateOnDrag: true,
+                                        minRating: 1,
+                                        itemBuilder: (context, _) => Icon(
+                                              Icons.star,
+                                              color: Colors.blueAccent,
+                                            ),
+                                        onRatingUpdate: (rating) {
+                                          setState(() {
+                                            this.supplierRating =
+                                                rating.toInt();
+                                          });
+                                        }),
+                                  ],
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('Save'),
+                                    onPressed: () {
+                                      print(
+                                          "supplier uid is: ${order.supplierUid}");
+
+                                      FirebaseFirestore.instance
+                                          .collection('supplier')
+                                          .where('uid',
+                                              isEqualTo: order.supplierUid)
+                                          .get()
+                                          .then((value) {
+                                        value.docs.forEach((element) {
+                                          print(
+                                              "supplier name is from supplier collection: ${element.id}");
+                                          FirebaseFirestore.instance
+                                              .collection('supplier')
+                                              .doc(element.id)
+                                              .get()
+                                              .then((value) {
+                                            this.supplierModel =
+                                                SupplierUserModel.fromMap(
+                                                    value.data());
+                                            print(
+                                                "supplier total rating from supplier collection: ${supplierModel.totalRating}");
+                                            int rating =
+                                                supplierModel.totalRating!;
+                                            print("rating $rating");
+                                            supplierRating += rating;
+                                            final docUser = FirebaseFirestore
+                                                .instance
+                                                .collection('supplier')
+                                                .doc(order.supplierUid);
+                                            docUser.update({
+                                              'totalRating': supplierRating
+                                            });
+                                            timer.cancel();
+                                          });
+                                        });
+                                      });
+
+                                      timer.cancel();
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomeScreen()));
+                                    },
+                                  ),
+                                ],
+                              ));
+
                       final success1 = await prefs.remove('orderUid');
+                      break;
                     } else {
                       Fluttertoast.showToast(msg: "Order is pending.");
                     }
@@ -180,6 +276,7 @@ class _OrderScreenState extends State<OrderScreen> {
     } else if (order.status == "complete") {
       _currentstep = 2;
       completeButtonDisable = false;
+      timer.cancel;
       TankerNotificationService().cancelAllNotifications();
     }
 
