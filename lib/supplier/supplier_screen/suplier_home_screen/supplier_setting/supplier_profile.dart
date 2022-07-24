@@ -127,14 +127,16 @@ class _SupplierSettinfState extends State<SupplierProfile> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "${loginUser.firstName}",
-            overflow: TextOverflow.fade,
-            maxLines: 1,
-            softWrap: true,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.blueAccent,
+          Expanded(
+            child: Text(
+              "${loginUser.firstName}",
+              overflow: TextOverflow.fade,
+              maxLines: 1,
+              softWrap: true,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.blueAccent,
+              ),
             ),
           ),
           GestureDetector(
@@ -149,7 +151,6 @@ class _SupplierSettinfState extends State<SupplierProfile> {
         ],
       ),
     );
-
     // last name field
     Future updateLastName() async => showDialog(
         context: context,
@@ -200,7 +201,6 @@ class _SupplierSettinfState extends State<SupplierProfile> {
                 )
               ],
             ));
-
     final lasttName = Container(
       height: 50,
       decoration: BoxDecoration(
@@ -218,14 +218,16 @@ class _SupplierSettinfState extends State<SupplierProfile> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "${loginUser.lastName}",
-            overflow: TextOverflow.fade,
-            maxLines: 1,
-            softWrap: true,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.blueAccent,
+          Expanded(
+            child: Text(
+              "${loginUser.lastName}",
+              overflow: TextOverflow.fade,
+              maxLines: 1,
+              softWrap: false,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.blueAccent,
+              ),
             ),
           ),
           GestureDetector(
@@ -308,14 +310,16 @@ class _SupplierSettinfState extends State<SupplierProfile> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "${loginUser.contact}",
-            overflow: TextOverflow.fade,
-            maxLines: 1,
-            softWrap: true,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.blueAccent,
+          Expanded(
+            child: Text(
+              "${loginUser.contact}",
+              overflow: TextOverflow.fade,
+              maxLines: 1,
+              softWrap: false,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.blueAccent,
+              ),
             ),
           ),
           GestureDetector(
@@ -501,14 +505,16 @@ class _SupplierSettinfState extends State<SupplierProfile> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "${loginUser.password}",
-            overflow: TextOverflow.fade,
-            maxLines: 1,
-            softWrap: true,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.blueAccent,
+          Expanded(
+            child: Text(
+              "${loginUser.password}",
+              overflow: TextOverflow.fade,
+              maxLines: 1,
+              softWrap: false,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.blueAccent,
+              ),
             ),
           ),
           GestureDetector(

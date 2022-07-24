@@ -130,51 +130,67 @@ class _SupplierHomeState extends State<SupplierHome> {
 
     return orderUser.status == "new"
         ? Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              width: MediaQuery.of(context).size.width - 50,
-              height: 200,
-              color: Colors.blueAccent,
-              child: Column(
-                children: [
-                  Text(
-                    "Consumer: ${orderUser.firstName} ${orderUser.lastName}",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+            child: supplierModel.accountStatus == "active"
+                ? Container(
+                    padding: EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width - 50,
+                    height: 200,
+                    color: Colors.blueAccent,
+                    child: Column(
+                      children: [
+                        Text(
+                          "Consumer: ${orderUser.firstName} ${orderUser.lastName}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Location: ${orderUser.homeAddress}, ${orderUser.cityAddress}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        orderAcceptButton,
+                        SizedBox(
+                          height: 10,
+                        ),
+                        orderIgnoreButton
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Location: ${orderUser.homeAddress}, ${orderUser.cityAddress}",
+                  )
+                : Text(
+                    "You are inactive",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.blueAccent,
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  orderAcceptButton,
-                  SizedBox(
-                    height: 10,
-                  ),
-                  orderIgnoreButton
-                ],
-              ),
-            ),
           )
         : Center(
-            child: Text(
-              "No new water tanker orders to supply",
-              style: TextStyle(
-                color: Colors.blueAccent,
-                fontSize: 20,
-              ),
-            ),
+            child: supplierModel.accountStatus == "active"
+                ? Text(
+                    "No new water tanker orders to supply",
+                    style: TextStyle(
+                      color: Colors.blueAccent,
+                      fontSize: 20,
+                    ),
+                  )
+                : Text(
+                    "You are inactive",
+                    style: TextStyle(
+                      color: Colors.blueAccent,
+                      fontSize: 20,
+                    ),
+                  ),
           );
   }
 

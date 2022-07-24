@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:samss/consumer/services/auth.dart';
+import 'package:samss/supplier/supplier_model/supplier_user.dart';
 import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_setting/suppiler_support.dart';
 import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_setting/supplier_profile.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -13,6 +15,28 @@ class SupplierSetting extends StatefulWidget {
 }
 
 class _SupplierSettingState extends State<SupplierSetting> {
+  final AuthServices _auth = AuthServices();
+  User? user = FirebaseAuth.instance.currentUser;
+  SupplierUserModel loginUser = SupplierUserModel();
+
+  int _initialLabelIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseFirestore.instance
+        .collection('supplier')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      if (mounted) {
+        setState(() {
+          this.loginUser = SupplierUserModel.fromMap(value.data());
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final _screenWidth = MediaQuery.of(context).size.width;
@@ -22,7 +46,7 @@ class _SupplierSettingState extends State<SupplierSetting> {
     final activeButton = Material(
       child: ToggleSwitch(
         minWidth: 100.0,
-        initialLabelIndex: 0,
+        initialLabelIndex: _initialLabelIndex,
         cornerRadius: 20.0,
         activeFgColor: Colors.white,
         inactiveBgColor: Colors.grey,
@@ -36,6 +60,7 @@ class _SupplierSettingState extends State<SupplierSetting> {
         ],
         onToggle: (index) {
           print('switched to: $index');
+
           if (index == 0) {
             final docUser = FirebaseFirestore.instance
                 .collection('supplier')
@@ -131,28 +156,51 @@ class _SupplierSettingState extends State<SupplierSetting> {
       ),
     );
 
-    return Scaffold(
-      body: Container(
-        width: _screenWidth,
-        height: _screenHeight,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 40,
+    return StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection("supplier")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .snapshots(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return Scaffold();
+          }
+
+          dynamic data = snapshot.data;
+
+          var per = data['accountStatus'];
+          if (per == "active") {
+            _initialLabelIndex = 0;
+          }
+          if (per == "inactive") {
+            _initialLabelIndex = 1;
+          }
+
+          return Scaffold(
+            body: Container(
+              width: _screenWidth,
+              height: _screenHeight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  activeButton,
+                  SizedBox(
+                    height: 40,
+                  ),
+                  profileButton,
+                  SizedBox(
+                    height: 40,
+                  ),
+                  supportButton
+                ],
+              ),
             ),
-            activeButton,
-            SizedBox(
-              height: 40,
-            ),
-            profileButton,
-            SizedBox(
-              height: 40,
-            ),
-            supportButton
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }
