@@ -21,6 +21,8 @@ class _RegisterationState extends State<Registeration> {
 
   final _formKey = GlobalKey<FormState>();
   late final String uid;
+  bool _obscureText = true;
+  bool _obscureText1 = true;
 
   TextEditingController firstNameController = new TextEditingController();
   TextEditingController lastNameController = new TextEditingController();
@@ -181,13 +183,24 @@ class _RegisterationState extends State<Registeration> {
           return null;
         }
       },
-      obscureText: true,
+      obscureText: _obscureText,
       onSaved: (value) {
         passwordController.text = value!;
       },
       textInputAction: TextInputAction.next,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         prefixIcon: Icon(Icons.vpn_key),
+        suffixIcon: GestureDetector(
+          onTap: (() {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          }),
+          child: Icon(
+            _obscureText ? Icons.visibility_off : Icons.visibility,
+            color: Colors.blue,
+          ),
+        ),
         contentPadding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 15,
@@ -210,13 +223,24 @@ class _RegisterationState extends State<Registeration> {
         }
         return null;
       },
-      obscureText: true,
+      obscureText: _obscureText1,
       onSaved: (value) {
         conformPasswordController.text = value!;
       },
       textInputAction: TextInputAction.done,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         prefixIcon: Icon(Icons.vpn_key),
+        suffixIcon: GestureDetector(
+          onTap: (() {
+            setState(() {
+              _obscureText1 = !_obscureText1;
+            });
+          }),
+          child: Icon(
+            _obscureText1 ? Icons.visibility_off : Icons.visibility,
+            color: Colors.blue,
+          ),
+        ),
         contentPadding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 15,

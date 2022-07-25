@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 import 'package:samss/shared/consumer_order.dart';
 import 'package:samss/shared/supplier_order_Accept.dart';
 import 'package:samss/supplier/supplier_model/supplier_user.dart';
@@ -167,12 +168,18 @@ class _SupplierHomeState extends State<SupplierHome> {
                       ],
                     ),
                   )
-                : Text(
-                    "You are inactive",
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontSize: 20,
-                    ),
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset("assets/anime/lf20_7jjpzooh.json"),
+                      Text(
+                        "You are inactive",
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
           )
         : Center(
@@ -184,12 +191,18 @@ class _SupplierHomeState extends State<SupplierHome> {
                       fontSize: 20,
                     ),
                   )
-                : Text(
-                    "You are inactive",
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontSize: 20,
-                    ),
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset("assets/anime/lf20_7jjpzooh.json"),
+                      Text(
+                        "You are inactive",
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
           );
   }

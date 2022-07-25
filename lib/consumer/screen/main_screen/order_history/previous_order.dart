@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:samss/consumer/screen/main_screen/order_history/order_list.dart';
 
@@ -14,40 +15,47 @@ class PreviousOrderList extends StatefulWidget {
 class _PreviousOrderListState extends State<PreviousOrderList> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          FlatButton.icon(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => ConsumerOrderList()));
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_rounded,
-              color: Colors.white,
-            ),
-            label: Text(
-              "Back",
-              style: TextStyle(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            FlatButton.icon(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => ConsumerOrderList()));
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_rounded,
                 color: Colors.white,
               ),
-            ),
-          )
-        ],
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.blueAccent,
-        title: Text("Order History"),
-        centerTitle: true,
+              label: Text(
+                "Back",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.blueAccent,
+          title: Text("Order History"),
+          centerTitle: true,
+        ),
+        body: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection('order').snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData)
+                return Column(
+                  children: [
+                    Lottie.asset("assets/anime/94539-order-history.json"),
+                  ],
+                );
+              return ListView(
+                children: getExpenseItems(snapshot),
+              );
+            }),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('order').snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (!snapshot.hasData) return Text("There is no expense");
-            return ListView(
-              children: getExpenseItems(snapshot),
-            );
-          }),
     );
   }
 

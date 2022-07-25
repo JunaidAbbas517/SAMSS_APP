@@ -50,6 +50,7 @@ dependencies:
   connectivity_plus: ^2.3.3
   toggle_switch: ^2.0.1
   flutter_rating_bar: ^4.0.1
+  lottie: ^1.3.0
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +87,12 @@ flutter:
     - assets/image/tank7.png
     - assets/image/tank8.png
     - assets/image/background.png
+    - assets/anime/41058-gasolin-tanker.json
+    - assets/anime/41252-searching-radius.json
+    - assets/anime/lf20_v0v93atd.json
+    - assets/anime/24209-house-ou-apartment.json
+    - assets/anime/94539-order-history.json
+    - assets/anime/lf20_7jjpzooh.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

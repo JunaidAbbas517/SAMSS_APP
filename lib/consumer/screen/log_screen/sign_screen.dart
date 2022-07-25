@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   String? email;
+
   @override
   State<Login> createState() => _LoginState();
 }
@@ -20,7 +21,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
-
+  bool _obscureText = true;
   String errorMessage = "";
 
   @override
@@ -32,7 +33,7 @@ class _LoginState extends State<Login> {
 
 //email field
     final emailField = TextFormField(
-      autofocus: false,
+      autofocus: true,
       keyboardType: TextInputType.emailAddress,
       controller: emailController,
       validator: (value) {
@@ -81,15 +82,26 @@ class _LoginState extends State<Login> {
           return null;
         }
       },
-      obscureText: true,
+      obscureText: _obscureText,
       onSaved: (value) {
         emailController.text = value!;
       },
       textInputAction: TextInputAction.done,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.vpn_key,
           color: Colors.blue,
+        ),
+        suffixIcon: GestureDetector(
+          onTap: (() {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          }),
+          child: Icon(
+            _obscureText ? Icons.visibility_off : Icons.visibility,
+            color: Colors.blue,
+          ),
         ),
         contentPadding: EdgeInsets.symmetric(
           horizontal: 20,

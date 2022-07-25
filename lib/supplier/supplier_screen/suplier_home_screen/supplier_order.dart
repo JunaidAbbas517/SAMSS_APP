@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:lottie/lottie.dart';
 
 class SupplierOrder extends StatefulWidget {
   SupplierOrder({Key? key}) : super(key: key);
@@ -18,10 +19,7 @@ class _SupplierOrderState extends State<SupplierOrder> {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData)
             return Center(
-              child: Text(
-                "There is no Order",
-                style: TextStyle(fontSize: 20),
-              ),
+              child: Lottie.asset("assets/anime/94539-order-history.json"),
             );
           if (snapshot.connectionState == ConnectionState.waiting)
             return Center(

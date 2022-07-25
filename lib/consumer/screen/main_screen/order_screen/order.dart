@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
 
 import 'package:samss/consumer/services/tanker_notification.dart';
@@ -333,68 +334,92 @@ class _OrderScreenState extends State<OrderScreen> {
                           currentStep: _currentstep,
                           steps: [
                             Step(
-                                state: _currentstep <= 0
-                                    ? StepState.editing
-                                    : StepState.complete,
-                                isActive: _currentstep >= 0,
-                                title: const Text(
-                                  'Searching Supplier',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                              state: _currentstep <= 0
+                                  ? StepState.editing
+                                  : StepState.complete,
+                              isActive: _currentstep >= 0,
+                              title: const Text(
+                                'Searching Supplier',
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
-                                content: const Center(
-                                  heightFactor: 10,
-                                  child: Text(
-                                    'Searching for water tanker supplier.',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
+                              ),
+                              content: Center(
+                                heightFactor: 1,
+                                child: Column(
+                                  children: [
+                                    Lottie.asset(
+                                        "assets/anime/lf20_v0v93atd.json",
+                                        height: 150),
+                                    Text(
+                                      'Searching for water tanker supplier.',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                )),
+                                  ],
+                                ),
+                              ),
+                            ),
                             Step(
-                                state: _currentstep <= 1
-                                    ? StepState.editing
-                                    : StepState.complete,
-                                isActive: _currentstep >= 1,
-                                title: const Text(
-                                  'Accept Order',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                              state: _currentstep <= 1
+                                  ? StepState.editing
+                                  : StepState.complete,
+                              isActive: _currentstep >= 1,
+                              title: const Text(
+                                'Accept Order',
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
-                                content: const Center(
-                                  heightFactor: 10,
-                                  child: Text(
-                                    'Water Tanker in on way to destination.',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
+                              ),
+                              content: Center(
+                                heightFactor: 1,
+                                child: Column(
+                                  children: [
+                                    Lottie.asset(
+                                        "assets/anime/41058-gasolin-tanker.json",
+                                        height: 150),
+                                    Text(
+                                      'Water Tanker in on way to destination.',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                )),
+                                  ],
+                                ),
+                              ),
+                            ),
                             Step(
-                                state: _currentstep <= 2
-                                    ? StepState.editing
-                                    : StepState.complete,
-                                isActive: _currentstep >= 2,
-                                title: const Text(
-                                  'Order Complete',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                              state: _currentstep <= 2
+                                  ? StepState.editing
+                                  : StepState.complete,
+                              isActive: _currentstep >= 2,
+                              title: const Text(
+                                'Order Complete',
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
-                                content: const Center(
-                                  heightFactor: 10,
-                                  child: Text(
-                                    'Water Tanker reach to destination.  ',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
+                              ),
+                              content: Center(
+                                heightFactor: 1,
+                                child: Column(
+                                  children: [
+                                    Lottie.asset(
+                                        "assets/anime/24209-house-ou-apartment.json",
+                                        height: 150),
+                                    Text(
+                                      'Water Tanker reach to destination.',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                ))
+                                  ],
+                                ),
+                              ),
+                            )
                           ],
                           controlsBuilder: (context, details) {
                             return Row(

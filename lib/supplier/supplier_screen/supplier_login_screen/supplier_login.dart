@@ -25,6 +25,7 @@ class _LoginState extends State<SupplierLogin> {
   final TextEditingController passwordController = new TextEditingController();
 
   String errorMessage = "";
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -82,15 +83,26 @@ class _LoginState extends State<SupplierLogin> {
           return null;
         }
       },
-      obscureText: true,
+      obscureText: _obscureText,
       onSaved: (value) {
         emailController.text = value!;
       },
       textInputAction: TextInputAction.done,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.vpn_key,
           color: Colors.blue,
+        ),
+        suffixIcon: GestureDetector(
+          onTap: (() {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          }),
+          child: Icon(
+            _obscureText ? Icons.visibility_off : Icons.visibility,
+            color: Colors.blue,
+          ),
         ),
         contentPadding: EdgeInsets.symmetric(
           horizontal: 20,
