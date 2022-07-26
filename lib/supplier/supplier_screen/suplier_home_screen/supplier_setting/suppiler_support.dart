@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:samss/shared/report.dart';
 import 'package:samss/supplier/supplier_model/supplier_report.dart';
 import 'package:samss/supplier/supplier_model/supplier_user.dart';
 import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_main.dart';
@@ -147,6 +148,7 @@ class _ConsumerReportState extends State<SupplierReportMain> {
           if (commentDesController.text.isNotEmpty &&
               commentTitleController.text.isNotEmpty) {
             reportDeatilToFirestore();
+            report_Deatil_To_Firestore();
           }
 
           commentTitleController.clear();
@@ -251,6 +253,26 @@ class _ConsumerReportState extends State<SupplierReportMain> {
           .doc(user!.uid)
           .collection("supplier_report")
           .add(reportDetail.toMap());
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+
+  Future report_Deatil_To_Firestore() async {
+    Report report_Detail = Report(
+      account: supplierModel.account,
+      email: supplierModel.email,
+      firstName: supplierModel.firstName,
+      uid: supplierModel.uid,
+      messageTitle: commentTitleController.text,
+      messageDescription: commentDesController.text,
+      date: DateTime.now(),
+    );
+
+    try {
+      await FirebaseFirestore.instance
+          .collection("report")
+          .add(report_Detail.toMap());
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.toString());
     }

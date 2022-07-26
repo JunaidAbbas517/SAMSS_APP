@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:samss/consumer/services/auth.dart';
 import 'package:samss/supplier/supplier_model/supplier_user.dart';
 import 'package:samss/supplier/supplier_screen/suplier_home_screen/supplier_setting/suppiler_support.dart';
@@ -186,7 +187,9 @@ class _SupplierSettingState extends State<SupplierSetting> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 40,
+                    height: 170,
+                    child: Lottie.asset(
+                        "assets/anime/10450-icon-set-setting.json"),
                   ),
                   activeButton,
                   SizedBox(

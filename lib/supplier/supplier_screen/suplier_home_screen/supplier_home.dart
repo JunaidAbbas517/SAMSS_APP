@@ -184,12 +184,19 @@ class _SupplierHomeState extends State<SupplierHome> {
           )
         : Center(
             child: supplierModel.accountStatus == "active"
-                ? Text(
-                    "No new water tanker orders to supply",
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontSize: 20,
-                    ),
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset("assets/anime/lf20_odvvjvdp.json"),
+                      Text(
+                        "No new water tanker orders.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
                   )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

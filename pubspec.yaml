@@ -93,6 +93,8 @@ flutter:
     - assets/anime/24209-house-ou-apartment.json
     - assets/anime/94539-order-history.json
     - assets/anime/lf20_7jjpzooh.json
+    - assets/anime/lf20_odvvjvdp.json
+    - assets/anime/10450-icon-set-setting.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

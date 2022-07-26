@@ -6,6 +6,7 @@ import 'package:samss/consumer/model/report.dart';
 import 'package:samss/consumer/model/user.dart';
 import 'package:samss/consumer/screen/main_screen/Home_screen.dart';
 import 'package:samss/consumer/screen/main_screen/support/display_report.dart';
+import 'package:samss/shared/report.dart';
 import 'package:xid/xid.dart';
 
 class ConsumerReport extends StatefulWidget {
@@ -146,6 +147,7 @@ class _ConsumerReportState extends State<ConsumerReport> {
           if (commentDesController.text.isNotEmpty &&
               commentTitleController.text.isNotEmpty) {
             reportDeatilToFirestore();
+            report_Deatil_To_Firestore();
           }
 
           commentTitleController.clear();
@@ -250,6 +252,26 @@ class _ConsumerReportState extends State<ConsumerReport> {
           .doc(user!.uid)
           .collection("user_report")
           .add(reportDetail.toMap());
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+
+  Future report_Deatil_To_Firestore() async {
+    Report report_Detail = Report(
+      account: loginUser.account,
+      email: loginUser.email,
+      firstName: loginUser.firstName,
+      uid: loginUser.uid,
+      messageTitle: commentTitleController.text,
+      messageDescription: commentDesController.text,
+      date: DateTime.now(),
+    );
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('report')
+          .add(report_Detail.toMap());
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.toString());
     }
