@@ -179,29 +179,27 @@ class _SupplierSettingState extends State<SupplierSetting> {
             _initialLabelIndex = 1;
           }
 
-          return Scaffold(
-            body: Container(
-              width: _screenWidth,
-              height: _screenHeight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 170,
-                    child: Lottie.asset(
-                        "assets/anime/10450-icon-set-setting.json"),
-                  ),
-                  activeButton,
-                  SizedBox(
-                    height: 40,
-                  ),
-                  profileButton,
-                  SizedBox(
-                    height: 40,
-                  ),
-                  supportButton
-                ],
-              ),
+          return Container(
+            width: _screenWidth,
+            height: _screenHeight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 170,
+                  child:
+                      Lottie.asset("assets/anime/10450-icon-set-setting.json"),
+                ),
+                activeButton,
+                SizedBox(
+                  height: 40,
+                ),
+                profileButton,
+                SizedBox(
+                  height: 40,
+                ),
+                supportButton
+              ],
             ),
           );
         });

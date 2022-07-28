@@ -139,6 +139,11 @@ class _SupplierHomeState extends State<SupplierHome> {
                     color: Colors.blueAccent,
                     child: Column(
                       children: [
+                        // SizedBox(
+                        //   height: 80,
+                        //   child: Lottie.asset(
+                        //       "assets/anime/106576-water-drop.json"),
+                        // ),
                         Text(
                           "Consumer: ${orderUser.firstName} ${orderUser.lastName}",
                           style: TextStyle(
@@ -154,17 +159,17 @@ class _SupplierHomeState extends State<SupplierHome> {
                           "Location: ${orderUser.homeAddress}, ${orderUser.cityAddress}",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 30,
                         ),
                         orderAcceptButton,
                         SizedBox(
                           height: 10,
                         ),
-                        orderIgnoreButton
+                        // orderIgnoreButton
                       ],
                     ),
                   )

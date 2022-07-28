@@ -400,8 +400,6 @@ class _LoginState extends State<Login> {
           await prefs.setString('email', userCredential.user!.uid);
           await prefs.setString('account', f['account']);
           break;
-        } else {
-          Fluttertoast.showToast(msg: "You are not consumer");
         }
       }
     } on FirebaseAuthException catch (error) {

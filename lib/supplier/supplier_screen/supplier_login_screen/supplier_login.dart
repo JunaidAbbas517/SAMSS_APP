@@ -404,8 +404,6 @@ class _LoginState extends State<SupplierLogin> {
           await prefs.setString('email', userCredential.user!.uid);
           await prefs.setString('account', f['account']);
           break;
-        } else {
-          Fluttertoast.showToast(msg: "You are not supplier");
         }
       }
     } on FirebaseAuthException catch (error) {
@@ -430,7 +428,7 @@ class _LoginState extends State<SupplierLogin> {
           errorMessage = "Signing in with Email and Password is not enabled.";
           break;
         default:
-          errorMessage = "No internet connection.";
+          errorMessage = "Login failed. Please try again.";
       }
       Fluttertoast.showToast(msg: errorMessage);
     }

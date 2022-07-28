@@ -324,7 +324,9 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Expanded(child: Status()),
+              Expanded(
+                child: Status(),
+              ),
               Expanded(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -456,6 +458,7 @@ class _HomeScreenState extends State<HomeScreen> {
     orderDetail.tankerQuantity = tankerQuantity;
     orderDetail.tankerPrice = price;
     orderDetail.supplierUid = null;
+    orderDetail.supplerRate = null;
     try {
       final prefs = await SharedPreferences.getInstance();
       if (tankerQuantity != 0 &&

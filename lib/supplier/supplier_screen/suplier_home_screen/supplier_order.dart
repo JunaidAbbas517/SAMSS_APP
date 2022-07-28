@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lottie/lottie.dart';
 
@@ -55,16 +56,29 @@ class _SupplierOrderState extends State<SupplierOrder> {
                         doc["secondName"] +
                         "  | Order Status: " +
                         doc["status"]),
-                    subtitle: Text(
-                      "Quantity: " +
-                          doc["tankerQuantity"].toString() +
-                          " | Price: " +
-                          doc["tankerPrice"].toString() +
-                          " | Address: " +
-                          doc["cityAddress"] +
-                          ", " +
-                          doc["homeAddress"],
-                      textAlign: TextAlign.center,
+                    subtitle: Column(
+                      children: [
+                        Text(
+                          "Quantity: " +
+                              doc["tankerQuantity"].toString() +
+                              " | Price: " +
+                              doc["tankerPrice"].toString() +
+                              " | Address: " +
+                              doc["cityAddress"] +
+                              ", " +
+                              doc["homeAddress"],
+                          textAlign: TextAlign.center,
+                        ),
+                        RatingBarIndicator(
+                          rating: doc["supplerRate"],
+                          itemBuilder: (context, index) => Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          itemCount: 5,
+                          itemSize: 50.0,
+                        ),
+                      ],
                     ),
                   ),
                 )

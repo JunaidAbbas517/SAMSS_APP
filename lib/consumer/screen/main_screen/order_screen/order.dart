@@ -31,6 +31,7 @@ class _OrderScreenState extends State<OrderScreen> {
   String contact = '';
 
   int supplierRating = 0;
+  double orderRate = 0;
 
   bool completeButtonDisable = true;
 
@@ -109,7 +110,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     ),
                                     RatingBar.builder(
                                         itemPadding:
-                                            EdgeInsets.symmetric(horizontal: 5),
+                                            EdgeInsets.symmetric(horizontal: 3),
                                         updateOnDrag: true,
                                         minRating: 1,
                                         itemBuilder: (context, _) => Icon(
@@ -120,6 +121,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                           setState(() {
                                             this.supplierRating =
                                                 rating.toInt();
+                                            this.orderRate = rating;
                                           });
                                         }),
                                   ],
@@ -161,6 +163,12 @@ class _OrderScreenState extends State<OrderScreen> {
                                             docUser.update({
                                               'totalRating': supplierRating
                                             });
+                                            final orderrate = FirebaseFirestore
+                                                .instance
+                                                .collection('order')
+                                                .doc(currentOrderUid);
+                                            orderrate.update(
+                                                {'supplerRate': orderRate});
                                             timer.cancel();
                                           });
                                         });
