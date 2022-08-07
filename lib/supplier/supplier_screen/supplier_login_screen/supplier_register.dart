@@ -42,11 +42,11 @@ class _SupplierRegisterationState extends State<SupplierRegisteration> {
       keyboardType: TextInputType.name,
       controller: firstNameController,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = new RegExp(r'^[a-zA-Z]{3,}$');
         if (value!.isEmpty) {
           return ("Please Enter your First Name");
         } else if (!regex.hasMatch(value)) {
-          return ("Please Enter name of 3 character or more");
+          return ("Please Enter Atleast 3 Alphbets.");
         } else {
           return null;
         }
@@ -75,11 +75,11 @@ class _SupplierRegisterationState extends State<SupplierRegisteration> {
       keyboardType: TextInputType.name,
       controller: lastNameController,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = new RegExp(r'^[a-zA-Z]{3,}$');
         if (value!.isEmpty) {
           return ("Please Enter your Last Name");
         } else if (!regex.hasMatch(value)) {
-          return ("Please Enter name of 3 character or more");
+          return ("Please Enter Atleast 3 Alphbets.");
         } else {
           return null;
         }
