@@ -458,7 +458,7 @@ class _HomeScreenState extends State<HomeScreen> {
     orderDetail.tankerQuantity = tankerQuantity;
     orderDetail.tankerPrice = price;
     orderDetail.supplierUid = null;
-    orderDetail.supplerRate = null;
+    orderDetail.supplerRate = 0;
     try {
       final prefs = await SharedPreferences.getInstance();
       if (tankerQuantity != 0 &&

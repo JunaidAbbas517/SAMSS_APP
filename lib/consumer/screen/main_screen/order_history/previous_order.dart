@@ -53,14 +53,14 @@ class _PreviousOrderListState extends State<PreviousOrderList> {
                   ],
                 );
               return ListView(
-                children: getExpenseItems(snapshot),
+                children: getOrderDetauil(snapshot),
               );
             }),
       ),
     );
   }
 
-  getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
+  getOrderDetauil(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data!.docs
         .map(
           (doc) => doc["consumerUid"] == FirebaseAuth.instance.currentUser!.uid

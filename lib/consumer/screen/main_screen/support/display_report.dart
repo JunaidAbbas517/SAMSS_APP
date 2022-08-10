@@ -25,7 +25,10 @@ class _SubCategoryClassState extends State<ReportDispaly> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text(
+            "Loading",
+            style: TextStyle(color: Colors.white),
+          );
         }
 
         return ListView(
