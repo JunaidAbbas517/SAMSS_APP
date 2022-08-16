@@ -456,8 +456,8 @@ class _HomeScreenState extends State<HomeScreen> {
     orderDetail.lastName = loginUser.lastName;
     orderDetail.contact = loginUser.contact;
     orderDetail.orderUid = xid.toString();
-    orderDetail.cityAddress = addressController.text;
-    orderDetail.homeAddress = cityController.text;
+    orderDetail.cityAddress = cityController.text;
+    orderDetail.homeAddress = addressController.text;
     orderDetail.status = 'new';
     orderDetail.tankerQuantity = tankerQuantity;
     orderDetail.tankerPrice = price;

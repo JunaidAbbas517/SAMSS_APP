@@ -171,6 +171,7 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                               fontSize: 20,
                               color: Colors.blueAccent,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(
                             height: 20,
@@ -183,6 +184,7 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                               fontSize: 20,
                               color: Colors.blueAccent,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(
                             height: 20,
@@ -196,6 +198,7 @@ class _SupplierAcceptionState extends State<SupplierAcception> {
                               fontSize: 20,
                               color: Colors.blueAccent,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(
                             height: 20,

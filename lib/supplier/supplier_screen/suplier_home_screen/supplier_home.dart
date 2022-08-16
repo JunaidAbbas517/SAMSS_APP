@@ -133,8 +133,6 @@ class _SupplierHomeState extends State<SupplierHome> {
         ? Center(
             child: supplierModel.accountStatus == "active"
                 ? Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     padding: EdgeInsets.all(10),
                     width: MediaQuery.of(context).size.width - 50,
                     height: 200,
@@ -193,6 +191,7 @@ class _SupplierHomeState extends State<SupplierHome> {
             child: supplierModel.accountStatus == "active"
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Lottie.asset("assets/anime/lf20_odvvjvdp.json"),
                       Text(
@@ -207,6 +206,7 @@ class _SupplierHomeState extends State<SupplierHome> {
                   )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Lottie.asset("assets/anime/lf20_7jjpzooh.json"),
                       Text(
