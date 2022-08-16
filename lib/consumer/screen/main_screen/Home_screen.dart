@@ -56,8 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
         addressController.text = value!;
       },
       textInputAction: TextInputAction.next,
+      style: TextStyle(color: Colors.white),
       decoration: const InputDecoration(
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: TextStyle(color: Color.fromARGB(123, 255, 255, 255)),
         prefixIcon: Icon(
           Icons.home_work_outlined,
           color: Colors.white,
@@ -85,8 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
         cityController.text = value!;
       },
       textInputAction: TextInputAction.done,
+      style: TextStyle(color: Colors.white),
       decoration: const InputDecoration(
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: TextStyle(color: Color.fromARGB(119, 255, 255, 255)),
         prefixIcon: Icon(
           Icons.location_city,
           color: Colors.white,
@@ -165,8 +167,10 @@ class _HomeScreenState extends State<HomeScreen> {
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
           setState(() {
-            addressController.text = '';
+            addressController.text = "";
             cityController.text = '';
+            _apartmentAddress = addressController.text;
+            _cityAddress = cityController.text;
           });
         },
         child: const Text(

@@ -133,10 +133,12 @@ class _SupplierHomeState extends State<SupplierHome> {
         ? Center(
             child: supplierModel.accountStatus == "active"
                 ? Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     padding: EdgeInsets.all(10),
                     width: MediaQuery.of(context).size.width - 50,
                     height: 200,
-                    color: Colors.blueAccent,
+                    color: Color.fromARGB(166, 68, 137, 255),
                     child: Column(
                       children: [
                         // SizedBox(

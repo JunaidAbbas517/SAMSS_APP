@@ -74,7 +74,7 @@ class _RegisterationState extends State<Registeration> {
       keyboardType: TextInputType.name,
       controller: lastNameController,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = new RegExp(r'^[a-zA-Z]{3,}$');
         if (value!.isEmpty) {
           return ("Please Enter your Last Name");
         } else if (!regex.hasMatch(value)) {

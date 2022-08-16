@@ -28,36 +28,32 @@ class _StatusState extends State<Status> {
 
           dynamic data = snapshot.data;
 
-          var per = data['level'];
-          per = per.round();
-
           var status = data['level'];
-
           var m1 = "assets/image/tank1.png";
           if (status == null) {
             m1 = "assets/image/tank1.png";
           } else if (status == 0) {
             m1 = "assets/image/tank1.png";
             NotificationService().cancelAllNotifications();
-          } else if (status == 2 || status <= 15) {
+          } else if (status == 1 || status <= 14) {
             m1 = "assets/image/tank2.png";
             NotificationService().showNotification();
-          } else if (status == 16 || status <= 28) {
+          } else if (status == 15 || status <= 29) {
             m1 = "assets/image/tank3.png";
             NotificationService().cancelAllNotifications();
-          } else if (status == 29 || status <= 42) {
+          } else if (status == 30 || status <= 44) {
             m1 = "assets/image/tank4.png";
             NotificationService().cancelAllNotifications();
-          } else if (status == 43 || status <= 54) {
+          } else if (status == 45 || status <= 59) {
             m1 = "assets/image/tank5.png";
             NotificationService().cancelAllNotifications();
-          } else if (status == 55 || status <= 70) {
+          } else if (status == 60 || status <= 74) {
             m1 = "assets/image/tank6.png";
             NotificationService().cancelAllNotifications();
-          } else if (status == 71 || status <= 85) {
+          } else if (status == 75 || status <= 89) {
             m1 = "assets/image/tank7.png";
             NotificationService().cancelAllNotifications();
-          } else if (status == 86 || status <= 100) {
+          } else if (status == 90 || status <= 100) {
             m1 = "assets/image/tank8.png";
             NotificationService().cancelAllNotifications();
           }
@@ -78,7 +74,7 @@ class _StatusState extends State<Status> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "$per",
+                    data['level'].toString(),
                     style: TextStyle(fontSize: 30),
                   ),
                   Icon(Icons.percent_rounded),
